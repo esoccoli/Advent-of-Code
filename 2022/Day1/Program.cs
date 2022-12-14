@@ -6,10 +6,51 @@
         {
             string[] input = File.ReadAllLines("../../../input.txt");
 
-            Part1(input);
+            List<int> elves = FindCalsAllElves(input);
+
+            int maxCals = elves[0];
+            for (int i = 0; i < elves.Count; i++)
+            {
+                if (elves[i] > maxCals)
+                {
+                    maxCals = elves[i];
+                }
+            }
+
+            Console.WriteLine("Part 1: " + maxCals);
+
+            // Part 2
+
+            int sumTop3 = maxCals;
+
+            int secondMax = 0;
+
+            for (int i = 0; i < elves.Count; i++)
+            {
+                if (elves[i] > secondMax && elves[i] < maxCals)
+                {
+                    secondMax = elves[i];
+                }
+            }
+
+            sumTop3 += secondMax;
+
+            int thirdMax = 0;
+
+            for (int i = 0; i < elves.Count; i++)
+            {
+                if (elves[i] > thirdMax && elves[i] < secondMax)
+                {
+                    thirdMax = elves[i];
+                }
+            }
+
+            sumTop3 += thirdMax;
+
+            Console.WriteLine("Part 2: " + sumTop3);
         }
 
-        static void Part1(string[] input)
+        static List<int> FindCalsAllElves(string[] input)
         {
             List<int> elves = new List<int>();
             int calsCarrying = 0;
@@ -28,17 +69,7 @@
                 }
             }
 
-            int indexElfMaxCals = 0;
-
-            for (int elf = 0; elf < elves.Count; elf++)
-            {
-                if (elves[elf] > elves[indexElfMaxCals])
-                {
-                    indexElfMaxCals = elf;
-                }
-            }
-
-            Console.WriteLine("Part 1: " + elves[indexElfMaxCals]);
+            return elves;
         }
     }
 }
