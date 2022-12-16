@@ -60,7 +60,7 @@
 
                 for (int crate = 0; crate < numToMove; crate++)
                 {
-                    if (stacks[moveFrom].Count != 0)
+                    if (stacks[moveFrom].Count > 0)
                     {
                         cratesToMove.Add(stacks[moveFrom].Pop());
                     }
